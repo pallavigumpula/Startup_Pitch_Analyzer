@@ -1,0 +1,564 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* MAIN CONTAINER */
+.auth-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT SIDE */
+.auth-left {
+    width: 50%;
+    background: linear-gradient(135deg, #1d2671, #4facfe);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.auth-left h1 {
+    font-size: 36px;
+    margin: 15px 0;
+}
+
+.auth-left p {
+    max-width: 400px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* LOGO */
+.logo {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+/* RIGHT SIDE */
+.auth-right {
+    width: 50%;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BOX */
+.auth-box {
+    background: white;
+    padding: 35px;
+    width: 340px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.auth-box h2 {
+    margin-bottom: 20px;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+input:focus {
+    border-color: #4facfe;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.15);
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #1d2671, #4facfe);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    transition: opacity .2s, transform .15s;
+}
+
+button:hover {
+    opacity: .92;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* PASSWORD */
+.password-box {
+    position: relative;
+}
+
+/* LINKS */
+.links {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* SMALL TEXT */
+small {
+    font-size: 12px;
+    color: gray;
+}
+
+/* SHOW / HIDE BUTTON */
+.toggle {
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #4facfe;
+    font-weight: 600;
+}
+/* 🔥 TABLE DESIGN */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: #4facfe;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+/* 🔥 DASHBOARD BODY */
+.dashboard-body {
+    background: #f4f6f9;
+}
+
+/* 🔥 NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1d2671;
+    padding: 15px 30px;
+    color: white;
+}
+
+.navbar h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.navbar-logo {
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.logout {
+    color: #ffd54f;
+}
+
+/* 🔥 CONTAINER */
+.container {
+    width: 70%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* 🔥 CARDS (THIS IS WHAT YOU MISSED) */
+.card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* 🔥 TEXTAREA */
+textarea {
+    width: 90%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* 🔥 BUTTON OVERRIDE (dashboard look) */
+.container button {
+    width: auto;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+.container button:hover {
+    opacity: 0.9;
+}
+
+/* 🔥 PROFILE TEXT */
+.card p {
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+.flash {
+  background: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 8px;
+  width: 50%;
+  margin: 15px auto;
+}
+
+/* =========================================================
+   DASHBOARD PRO UI
+   ========================================================= */
+
+.navbar a.active {
+    color: #ffd54f;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, #1d2671, #4facfe);
+    color: white;
+    border-radius: 14px;
+    padding: 30px 35px;
+    text-align: left;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(29, 38, 113, 0.25);
+}
+
+.hero h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
+}
+
+.hero p {
+    margin: 0;
+    opacity: .9;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+/* STAT CARDS */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    text-align: left;
+    border-left: 4px solid #4facfe;
+}
+
+.stat-card .stat-label {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.stat-card .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d2671;
+    margin-top: 4px;
+}
+
+/* MAIN DASHBOARD GRID */
+.dash-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 25px;
+    text-align: left;
+    align-items: start;
+}
+
+.section-title {
+    margin: 0 0 15px;
+    color: #1d2671;
+}
+
+.divider-text {
+    color: #999;
+    font-size: 13px;
+    margin: 12px 0;
+    text-align: center;
+}
+
+.upload-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.upload-row input[type="file"],
+.upload-row input[type="number"] {
+    flex: 1;
+    min-width: 160px;
+}
+
+.tips-list {
+    margin: 0;
+    padding-left: 18px;
+    color: #444;
+    line-height: 1.8;
+}
+
+.empty-state {
+    color: #999;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.recent-table th,
+.recent-table td {
+    text-align: left;
+}
+
+.pitch-cell {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dash-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .hero {
+        padding: 22px 20px;
+    }
+}
+
+/* =========================================================
+   AUTH PAGES PRO UI (login / register / forgot)
+   ========================================================= */
+
+.auth-tagline {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.16);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.auth-features {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    text-align: left;
+    max-width: 360px;
+}
+
+.auth-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    opacity: .95;
+}
+
+.auth-features li .icon {
+    flex-shrink: 0;
+}
+
+.auth-box form {
+    text-align: left;
+}
+
+.auth-box .field-label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #555;
+    margin: 12px 0 4px;
+}
+
+.auth-box .field-label:first-of-type {
+    margin-top: 0;
+}
+
+.error {
+    color: #d9364f;
+}
+
+.timer {
+    background: #fff3cd;
+    color: #856404;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    .auth-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .auth-left,
+    .auth-right {
+        width: 100%;
+    }
+
+    .auth-left {
+        padding: 32px 20px;
+    }
+
+    .auth-box {
+        width: 88%;
+        max-width: 380px;
+        margin: 30px 0;
+    }
+}
+
+/* =========================================================
+   PROFILE PRO UI
+   ========================================================= */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1d2671, #4facfe);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.profile-header .profile-name {
+    margin: 0;
+    font-size: 22px;
+    color: #1d2671;
+}
+
+.profile-header .profile-email {
+    margin: 2px 0 8px;
+    color: #777;
+    font-size: 14px;
+}
+
+.pill {
+    display: inline-block;
+    background: #eef3ff;
+    color: #1d2671;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.score-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.score-high {
+    background: #d4edda;
+    color: #155724;
+}
+
+.score-mid {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.score-low {
+    background: #f8d7da;
+    color: #721c24;
+}

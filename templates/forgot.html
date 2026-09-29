@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forgot Password - Startup Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+
+        <h1>Password Recovery</h1>
+        <p>
+            Secure your account and reset your password.  
+            Verify your identity and continue building your startup journey.
+        </p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <div class="auth-box">
+            <h2>Reset Password</h2>
+
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+
+            {% if success %}
+            <script>
+                alert("{{ success }}");
+                window.location.href = "/";
+            </script>
+            {% endif %}
+
+            {% if lock_time %}
+            <div class="timer">
+                Too many attempts <br>
+                Try after <span id="countdown"></span>
+            </div>
+            {% endif %}
+
+            <form method="POST" onsubmit="return validateAll()">
+
+                <input type="email" name="email" placeholder="Enter your email" required>
+
+                <!-- SECURITY ANSWER -->
+                <div class="password-box">
+                    <input type="password" id="security_answer" name="security_answer"
+                           placeholder="Your childhood friend's name *" required>
+                    <span class="toggle" onclick="togglePassword('security_answer', this)">Show</span>
+                </div>
+
+                <!-- CONFIRM SECURITY -->
+                <div class="password-box">
+                    <input type="password" id="confirm_security"
+                           placeholder="Confirm answer *" required>
+                    <span class="toggle" onclick="togglePassword('confirm_security', this)">Show</span>
+                </div>
+
+                <!-- NEW PASSWORD -->
+                <div class="password-box">
+                    <input type="password" id="password" name="new_password"
+                           placeholder="New password"
+                           pattern="(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                           required>
+                    <span class="toggle" onclick="togglePassword('password', this)">Show</span>
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="password-box">
+                    <input type="password" id="confirm_password"
+                           placeholder="Confirm password" required>
+                    <span class="toggle" onclick="togglePassword('confirm_password', this)">Show</span>
+                </div>
+
+                <small id="errorMsg" class="error"></small>
+
+                <button id="submitBtn" type="submit">Update Password</button>
+
+                <input type="hidden" id="lockValue" value="{{ lock_time | default(0) }}">
+            </form>
+
+            <p class="links">
+                <a href="/">Back to Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function togglePassword(id, el) {
+    let field = document.getElementById(id);
+
+    if (field.type === "password") {
+        field.type = "text";
+        el.innerText = "Hide";
+    } else {
+        field.type = "password";
+        el.innerText = "Show";
+    }
+}
+
+// VALIDATION
+function validateAll() {
+
+    let pass = document.getElementById("password").value;
+    let confirmPass = document.getElementById("confirm_password").value;
+
+    let sec = document.getElementById("security_answer").value;
+    let confirmSec = document.getElementById("confirm_security").value;
+
+    let error = document.getElementById("errorMsg");
+    error.innerText = "";
+
+    if (sec !== confirmSec) {
+        error.innerText = "Security answers do not match ❌";
+        return false;
+    }
+
+    if (pass !== confirmPass) {
+        error.innerText = "Passwords do not match ❌";
+        return false;
+    }
+
+    return true;
+}
+
+// TIMER
+let lockTime = parseInt(document.getElementById("lockValue").value);
+
+if (lockTime > 0) {
+
+    let countdown = document.getElementById("countdown");
+    let btn = document.getElementById("submitBtn");
+    let inputs = document.querySelectorAll("input");
+
+    btn.disabled = true;
+    inputs.forEach(i => i.disabled = true);
+
+    let timer = setInterval(function () {
+
+        let minutes = Math.floor(lockTime / 60);
+        let seconds = lockTime % 60;
+
+        countdown.innerText =
+            String(minutes).padStart(2, '0') + ":" +
+            String(seconds).padStart(2, '0');
+
+        lockTime--;
+
+        if (lockTime < 0) {
+            clearInterval(timer);
+            btn.disabled = false;
+            inputs.forEach(i => i.disabled = false);
+        }
+
+    }, 1000);
+}
+</script>
+
+</body>
+</html>

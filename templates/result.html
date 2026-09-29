@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Result</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #e3f2fd, #ffffff);
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            width: 60%;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h2 { color: #1d2671; }
+
+        .report-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .report-header img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+        }
+
+        .report-header h2 {
+            margin: 0;
+        }
+
+        .report-header p {
+            margin: 2px 0 0;
+            color: #777;
+            font-size: 13px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        .progress {
+            width: 100%;
+            background: #eee;
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .bar {
+            height: 10px;
+            background: #007bff;
+        }
+
+        .section {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        ul { text-align: left; }
+
+        button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .chart-box {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        /* 🤖 AI ASSISTANT FLOATING BUTTON */
+        #ai-assistant-btn {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #1d2671;
+            color: white;
+            font-size: 28px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        #ai-assistant-btn:hover {
+            background: #2a3aa8;
+        }
+
+        #ai-assistant-panel {
+            position: fixed;
+            right: 24px;
+            bottom: 96px;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            padding: 16px;
+            text-align: left;
+            display: none;
+            z-index: 1000;
+        }
+
+        #ai-assistant-panel.open {
+            display: block;
+        }
+
+        #ai-assistant-panel h4 {
+            margin-top: 0;
+            color: #1d2671;
+        }
+
+        #ai-assistant-panel ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        #ai-assistant-panel li {
+            margin-bottom: 8px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="report-header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+        <div>
+            <h2>Startup Pitch Analysis</h2>
+            <p>Automated investor-readiness report</p>
+        </div>
+    </div>
+
+    <h3>Experience Level: {{ level }}</h3>
+    <h3>{{ readiness }}</h3>
+
+    <!-- SCORE TABLE -->
+    <table>
+        <tr><th>Category</th><th>Score</th></tr>
+
+        <tr><td>Problem</td><td>{{ scores.get('problem', 0) }}</td></tr>
+        <tr><td>Solution</td><td>{{ scores.get('solution', 0) }}</td></tr>
+        <tr><td>Market</td><td>{{ scores.get('market', 0) }}</td></tr>
+        <tr><td>Business</td><td>{{ scores.get('business', 0) }}</td></tr>
+        <tr><td>Competition</td><td>{{ scores.get('competition', 0) }}</td></tr>
+        <tr><td>Team</td><td>{{ scores.get('team', 0) }}</td></tr>
+
+        <tr><th>Total</th><th>{{ score }}</th></tr>
+    </table>
+    
+    <!-- 🔥 NEW ADD: PVB + AOA + MOA -->
+     <div class="section">
+        <h3>🔍 Analysis Breakdown</h3>
+        <p><b>Problem:</b> {{ "Strong" if scores.get('problem',0) > 10 else "Weak" }}</p>
+        <p><b>Value:</b> {{ "Good" if scores.get('value',0) > 10 else "Improve" }}</p>
+        <p><b>Business:</b> {{ "Clear" if scores.get('business',0) > 10 else "Needs work" }}</p>
+        <p><b>Strategy (AOA):</b> {{ aoa.level if aoa else '' }} - {{ aoa.analysis if aoa else '' }}</p>
+        <p><b>Market (MOA):</b> {{ moa.level if moa else '' }} - {{ moa.analysis if moa else '' }}</p>
+        <p><b>Investor Readiness (IR):</b> {{ ir }}</p>
+        <p><b>Problem/Value/Business Check (PVB):</b> {{ pvb }}</p>
+     </div>
+
+    <!-- 🔥 NEW ADD: GRAPHS FOR SECTION SCORES + IR/PVB/MOA/AOA -->
+    <div class="section chart-box">
+        <h3>📊 Section Scores Graph</h3>
+        <canvas id="sectionScoresChart"></canvas>
+    </div>
+
+    {% if metric_scores %}
+    <div class="section chart-box">
+        <h3>🧭 IR / PVB / MOA / AOA Overview</h3>
+        <canvas id="metricsChart"></canvas>
+    </div>
+    {% endif %}
+
+    <!-- PROGRESS BAR -->
+    <div class="section">
+        <h3>📊 Pitch Completeness</h3>
+
+        <p>Problem</p>
+        <div class="progress">
+            <div class="bar" style="width: {{ scores.get('problem', 0) * 5 }}%"></div>
+        </div>
+
+        <p>Solution</p>
+        <div class="progress">
+            <div class="bar" style="width: {{ scores.get('solution', 0) * 5 }}%"></div>
+        </div>
+
+        <p>Market</p>
+        <div class="progress">
+            <div class="bar" style="width: {{ scores.get('market', 0) * 5 }}%"></div>
+        </div>
+
+        <p>Business</p>
+        <div class="progress">
+            <div class="bar" style="width: {{ scores.get('business', 0) * 5 }}%"></div>
+        </div>
+
+        <p>Competition</p>
+        <div class="progress">
+            <div class="bar" style="width: {{ scores.get('competition', 0) * 10 }}%"></div>
+        </div>
+
+        <p>Team</p>
+        <div class="progress">
+            <div class="bar" style="width: {{ scores.get('team', 0) * 5 }}%"></div>
+        </div>
+    </div>
+
+    <!-- STRENGTHS -->
+    <div class="section">
+        <h3>💪 Strengths</h3>
+        <ul>
+            {% for s in strengths %}
+                <li>{{ s }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- WEAKNESSES -->
+    <div class="section">
+        <h3>⚠️ Weaknesses</h3>
+        <ul>
+            {% for w in weaknesses %}
+                <li>{{ w }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- SUGGESTIONS -->
+    <div class="section">
+        <h3>💡 Suggestions</h3>
+        <ul>
+            {% for s in suggestions %}
+                <li>{{ s }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="section">
+        <h3>❓ Investor Questions</h3>
+        <ul>
+            {% for q in questions %}
+                <li>{{ q }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- PRESENTATION FEEDBACK -->
+    {% if presentation %}
+    <div class="section">
+        <h3>🎤 Presentation Feedback</h3>
+        <p><b>Presentation Score:</b> {{ presentation.presentation_score }}/100</p>
+        <ul>
+            {% for f in presentation.feedback %}
+                <li>{{ f }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- SUCCESS PREDICTION -->
+    {% if prediction %}
+    <div class="section">
+        <h3>📈 Investor Interest Prediction</h3>
+        <p><b>Success Probability:</b> {{ prediction.probability }}%</p>
+        <p>{{ prediction.label }}</p>
+    </div>
+    {% endif %}
+
+    <!-- COMPETITOR ANALYSIS (AOA) -->
+    {% if aoa %}
+    <div class="section">
+        <h3>🥊 Competitor Analysis</h3>
+        <p><b>Level:</b> {{ aoa.level }}</p>
+        <p>{{ aoa.analysis }}</p>
+        {% if aoa.competitors_named %}
+            <p><b>Named competitors:</b> {{ aoa.competitors_named | join(', ') }}</p>
+        {% endif %}
+        {% if aoa.differentiators_found %}
+            <p><b>Differentiators found:</b> {{ aoa.differentiators_found | join(', ') }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- MARKET ANALYSIS (MOA) -->
+    {% if moa %}
+    <div class="section">
+        <h3>🌍 Market Opportunity Analysis</h3>
+        <p><b>Level:</b> {{ moa.level }}</p>
+        <p>{{ moa.analysis }}</p>
+        {% if moa.market_size_mentions %}
+            <p><b>Market size mentions:</b> {{ moa.market_size_mentions | join(', ') }}</p>
+        {% endif %}
+        <p><b>Target audience defined:</b> {{ "Yes" if moa.audience_defined else "No" }}</p>
+    </div>
+    {% endif %}
+
+    <!-- INDUSTRY CLASSIFICATION -->
+    {% if industry %}
+    <div class="section">
+        <h3>🏷️ Industry Classification</h3>
+        <p><b>Detected Industry:</b> {{ industry.industry }} (confidence: {{ industry.confidence }})</p>
+        {% if industry.tips %}
+        <ul>
+            {% for tip in industry.tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- AI INVESTOR SIMULATION -->
+    {% if investor_panel %}
+    <div class="section">
+        <h3>🤖 AI Investor Panel Simulation</h3>
+        {% for member in investor_panel %}
+            <p><b>{{ member.persona }}</b> ({{ member.verdict }})<br>
+            {{ member.reaction }}<br>
+            <i>"{{ member.question }}"</i></p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- DOWNLOAD -->
+    <a href="/download_report">
+        <button>📄 Download Report</button>
+    </a>
+
+</div>
+
+<!-- 🤖 AI ASSISTANT (bottom-right) -->
+<button id="ai-assistant-btn" onclick="toggleAiAssistant()" title="AI Suggestions">🤖</button>
+<div id="ai-assistant-panel">
+    <h4>💡 AI Suggestions</h4>
+    <ul>
+        {% for s in suggestions %}
+            <li>{{ s }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function toggleAiAssistant() {
+        document.getElementById('ai-assistant-panel').classList.toggle('open');
+    }
+
+    const sectionLabels = ['Problem', 'Solution', 'Market', 'Business', 'Competition', 'Team'];
+    const sectionValues = [
+        {{ scores.get('problem', 0) }},
+        {{ scores.get('solution', 0) }},
+        {{ scores.get('market', 0) }},
+        {{ scores.get('business', 0) }},
+        {{ scores.get('competition', 0) }},
+        {{ scores.get('team', 0) }}
+    ];
+
+    new Chart(document.getElementById('sectionScoresChart'), {
+        type: 'bar',
+        data: {
+            labels: sectionLabels,
+            datasets: [{
+                label: 'Score',
+                data: sectionValues,
+                backgroundColor: '#007bff'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    {% if metric_scores %}
+    new Chart(document.getElementById('metricsChart'), {
+        type: 'bar',
+        data: {
+            labels: ['IR', 'PVB', 'MOA', 'AOA'],
+            datasets: [{
+                label: 'Status (%)',
+                data: [
+                    {{ metric_scores.get('IR', 0) }},
+                    {{ metric_scores.get('PVB', 0) }},
+                    {{ metric_scores.get('MOA', 0) }},
+                    {{ metric_scores.get('AOA', 0) }}
+                ],
+                backgroundColor: ['#1d2671', '#28a745', '#ffc107', '#dc3545']
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { x: { beginAtZero: true, max: 100 } }
+        }
+    });
+    {% endif %}
+</script>
+
+</body>
+</html>

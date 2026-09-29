@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Startup Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+
+        <span class="auth-tagline">Join for Free</span>
+        <h1>Join Startup Analyzer</h1>
+        <p>
+            Start your journey by analyzing startup ideas like a pro.
+            Build, validate, and improve your business concepts with AI insights.
+        </p>
+
+        <ul class="auth-features">
+            <li><span class="icon">🚀</span> Get an investor-readiness score for every pitch you write</li>
+            <li><span class="icon">💡</span> Personalized suggestions and investor-style questions</li>
+            <li><span class="icon">📈</span> Track your improvement across every submission</li>
+        </ul>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <div class="auth-box">
+            <h2>Create Account</h2>
+
+            <form method="POST" onsubmit="return validateAll()">
+
+                <label class="field-label">Full Name</label>
+                <input type="text" name="name" placeholder="Full Name" required>
+
+                <label class="field-label">Email Address</label>
+                <input type="email" name="email" placeholder="Email Address" required>
+
+                <!-- PASSWORD -->
+                <label class="field-label">Password</label>
+                <div class="password-box">
+                    <input type="password" id="password" name="password"
+                           placeholder="Password"
+                           pattern="(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                           required>
+                    <span class="toggle" onclick="togglePassword('password', this)">Show</span>
+                </div>
+
+                <small>Password must contain uppercase, special character, min 8 chars</small>
+
+                <!-- CONFIRM PASSWORD -->
+                <label class="field-label">Confirm Password</label>
+                <div class="password-box">
+                    <input type="password" id="confirm_password"
+                           placeholder="Confirm Password" required>
+                    <span class="toggle" onclick="togglePassword('confirm_password', this)">Show</span>
+                </div>
+
+                <small id="error" class="error"></small>
+
+                <!-- SECURITY QUESTION -->
+                <label class="field-label">Security Question</label>
+                <input type="text" name="security_answer"
+                       placeholder="Your childhood friend's name *" required>
+
+                <!-- EXPERIENCE -->
+                <label class="field-label">Experience</label>
+                <input type="number" id="experience" name="experience"
+                       placeholder="Years of Experience" required>
+
+                <small id="expError" class="error"></small>
+
+                <button type="submit">Register</button>
+            </form>
+
+            <p class="links">
+                Already have account? <a href="/">Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function togglePassword(id, el) {
+    let field = document.getElementById(id);
+
+    if (field.type === "password") {
+        field.type = "text";
+        el.innerText = "Hide";
+    } else {
+        field.type = "password";
+        el.innerText = "Show";
+    }
+}
+
+// VALIDATION
+function validateAll() {
+
+    let pass = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm_password").value;
+    let exp = document.getElementById("experience").value;
+
+    let error = document.getElementById("error");
+    let expError = document.getElementById("expError");
+
+    error.innerText = "";
+    expError.innerText = "";
+
+    if (pass !== confirm) {
+        error.innerText = "Passwords do not match ❌";
+        return false;
+    }
+
+    if (exp === "" || isNaN(exp) || Number(exp) < 0) {
+        expError.innerText = "Enter valid experience (0 or above)";
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>

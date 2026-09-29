@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Startup Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+
+<body class="dashboard-body">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h2><img src="{{ url_for('static', filename='logo.png') }}" class="navbar-logo" alt="logo"> Startup Predictor</h2>
+  <div>
+    <a href="/dashboard" class="{{ 'active' if request.path == '/dashboard' else '' }}">Dashboard</a>
+    <a href="/profile" class="{{ 'active' if request.path == '/profile' else '' }}">Profile</a>
+    <a href="/logout" class="logout">Logout</a>
+  </div>
+</nav>
+
+<!-- FLASH MESSAGE -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+     <div class="flash">
+        {% for msg in messages %}
+            <p>{{ msg }}</p>
+        {% endfor %}
+     </div>
+    {% endif %}
+{% endwith %}
+
+<div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Welcome back, {{ name }} 👋</h1>
+        <p>Analyze your startup pitch and get investor-ready feedback in seconds.</p>
+        <span class="badge">🎓 {{ level }} Level</span>
+    </div>
+
+    <!-- STATS -->
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-label">Experience Level</div>
+            <div class="stat-value">{{ level }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Years of Experience</div>
+            <div class="stat-value">{{ experience }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Pitches Analyzed</div>
+            <div class="stat-value">{{ history.count if history else ideas|length }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Best Score</div>
+            <div class="stat-value">{{ history.best_score if history else ((ideas | map(attribute='score') | list | max) if ideas else 0) }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Average Score</div>
+            <div class="stat-value">{{ history.average_score if history else 0 }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Worst Score</div>
+            <div class="stat-value">{{ history.worst_score if history else 0 }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Score Trend</div>
+            <div class="stat-value">{{ history.trend if history else "No data yet" }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Latest Readiness</div>
+            <div class="stat-value">{{ history.latest_readiness if history and history.latest_readiness else "No data yet" }}</div>
+        </div>
+    </div>
+
+    <!-- SCORE TREND CHART -->
+    {% if history and history.score_history and history.score_history|length > 1 %}
+    <div class="card">
+        <h3 class="section-title">📈 Score Trend Over Time</h3>
+        <canvas id="scoreTrendChart" height="80"></canvas>
+    </div>
+    {% endif %}
+
+    <!-- MAIN GRID -->
+    <div class="dash-grid">
+
+        <!-- LEFT COLUMN -->
+        <div>
+            <!-- PITCH INPUT -->
+            <div class="card">
+                <h3 class="section-title">📝 Enter your Startup Pitch</h3>
+
+                <form action="/analyze" method="POST" enctype="multipart/form-data">
+                    <textarea name="pitch" placeholder="Describe your problem, solution, target market, business model, competition and team..."></textarea>
+
+                    <p class="divider-text">— or upload a file —</p>
+
+                    <div class="upload-row">
+                        <input type="file" name="pitch_file" accept=".txt,.pdf">
+                    </div>
+
+                    <button type="submit">🚀 Analyze Pitch</button>
+                </form>
+            </div>
+
+            <!-- UPDATE EXPERIENCE -->
+            <div class="card">
+                <h3 class="section-title">⚙️ Update Experience</h3>
+                <form action="/update_exp" method="POST">
+                    <div class="upload-row">
+                        <input type="number" name="experience" placeholder="Enter new experience in years" required>
+                        <button type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+            <!-- LEVEL INFO -->
+            <div class="card">
+                <h3 class="section-title">🎯 Your Analysis Mode</h3>
+                {% if level == "Fresher" %}
+                    <p>Basic analysis mode (learning stage)</p>
+                {% elif level == "Beginner" %}
+                    <p>Intermediate analysis mode</p>
+                {% else %}
+                    <p>Advanced investor-level analysis</p>
+                {% endif %}
+            </div>
+
+            <!-- RECENT PITCHES -->
+            <div class="card">
+                <h3 class="section-title">📊 Recent Pitches</h3>
+
+                {% if ideas %}
+                <div style="overflow-x:auto;">
+                <table class="recent-table">
+                    <tr>
+                        <th>Pitch</th>
+                        <th>Score</th>
+                        <th>Readiness</th>
+                        <th>Industry</th>
+                        <th>Date</th>
+                    </tr>
+                    {% for idea in ideas[-5:] | reverse %}
+                    <tr>
+                        <td class="pitch-cell" title="{{ idea['pitch'] }}">{{ idea['pitch'][:60] }}{% if idea['pitch']|length > 60 %}…{% endif %}</td>
+                        <td>
+                            <span class="score-badge {{ 'score-high' if idea['score'] >= 70 else ('score-mid' if idea['score'] >= 50 else 'score-low') }}">
+                                {{ idea['score'] }}
+                            </span>
+                        </td>
+                        <td>{{ idea.get('readiness', '—') }}</td>
+                        <td>{{ idea.get('industry') or '—' }}</td>
+                        <td>{{ idea['date'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                </div>
+                {% else %}
+                    <p class="empty-state">No pitches analyzed yet. Submit your first pitch to see it here 🚀</p>
+                {% endif %}
+            </div>
+
+            <!-- TIPS -->
+            <div class="card">
+                <h3 class="section-title">💡 Quick Tips</h3>
+                <ul class="tips-list">
+                    <li>Clearly state the problem before the solution.</li>
+                    <li>Back your market claims with size and numbers.</li>
+                    <li>Explain exactly how you make money.</li>
+                    <li>Name real competitors and your edge over them.</li>
+                    <li>Introduce your team's relevant expertise.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% if history and history.score_history and history.score_history|length > 1 %}
+<script>
+    const scoreHistory = {{ history.score_history | tojson }};
+
+    new Chart(document.getElementById('scoreTrendChart'), {
+        type: 'line',
+        data: {
+            labels: scoreHistory.map(h => h.date),
+            datasets: [{
+                label: 'Pitch Score',
+                data: scoreHistory.map(h => h.score),
+                borderColor: '#4facfe',
+                backgroundColor: 'rgba(79, 172, 254, 0.15)',
+                fill: true,
+                tension: 0.3,
+                pointBackgroundColor: '#1d2671'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+</script>
+{% endif %}
+
+</body>
+</html>

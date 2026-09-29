@@ -1,0 +1,102 @@
+{
+    "sujatha@gmail.com": {
+        "name": "Sujatha",
+        "password": "Sujatha@345",
+        "experience": 6,
+        "security_answer": "pallavi",
+        "attempts": 0,
+        "lock_time": 0,
+        "ideas": [
+            {
+                "pitch": "Startup Name: SkillBridge AI\r\n\r\nProblem:\r\nMany college students and fresh graduates struggle to find suitable jobs because they lack practical skills, personalized career guidance, and industry-relevant experience. Traditional career counseling is expensive, generic, and often does not match the rapidly changing job market.\r\n\r\nSolution:\r\nSkillBridge AI is an AI-powered career platform that analyzes a student's skills, education, interests, and career goals to recommend suitable career paths. It creates personalized learning plans, identifies skill gaps, recommends relevant courses and projects, and helps users prepare for interviews and job applications.\r\n\r\nTarget Market:\r\nOur primary customers are college students, fresh graduates, and early-career professionals aged 18\u201330. We initially target the Indian market, where millions of students enter the workforce every year and face difficulties choosing career paths and developing job-ready skills.\r\n\r\nBusiness Model:\r\nWe use a freemium model. Basic career assessment and recommendations are free, while users can subscribe to a premium plan for personalized learning roadmaps, advanced AI career coaching, interview preparation, and job-readiness analytics. We can also generate revenue through partnerships with universities, training institutes, and recruiters.\r\n\r\nCompetition:\r\nOur competitors include LinkedIn, Coursera, Udemy, and traditional career counseling services. Our advantage is that SkillBridge AI combines career discovery, skill-gap analysis, personalized learning, and interview preparation in one platform rather than offering only courses or job listings.\r\n\r\nCompetitive Advantage:\r\nOur AI continuously adapts recommendations based on the user's progress, interests, skills, and changing industry requirements. This creates a personalized career journey instead of a one-size-fits-all solution.\r\n\r\nGo-to-Market Strategy:\r\nWe will initially acquire users through college partnerships, social media marketing, student ambassador programs, and referral incentives. After establishing a strong student user base, we will expand through university and corporate partnerships.\r\n\r\nTeam:\r\nOur founding team has skills in software development, artificial intelligence, product development, and business strategy. We understand the challenges faced by students and are building the product around their actual career needs.\r\n\r\nVision:\r\nOur vision is to become an AI-powered career companion that helps every student understand what career to pursue, what skills to learn, and how to successfully get their first job.",
+                "score": 55.22,
+                "date": "2026-09-13",
+                "readiness": "\u26a0\ufe0f Needs Improvement",
+                "industry": "EdTech"
+            }
+        ]
+    },
+    "gumpulapallavi@gmail.com": {
+        "name": "Pallavi",
+        "password": "Pallavi123@",
+        "experience": 4,
+        "security_answer": "manvitha",
+        "attempts": 0,
+        "lock_time": 0,
+        "ideas": [
+            {
+                "pitch": "Startup Name: StudyGenie\r\n\r\nProblem:\r\nMany students struggle to manage their study time effectively, leading to stress and poor performance.\r\n\r\nSolution:\r\nStudyGenie is an AI-based platform that creates personalized study plans based on a student\u2019s syllabus, deadlines, and learning pace.\r\n\r\nTarget Market:\r\nHigh school and college students preparing for exams.\r\n\r\nBusiness Model:\r\nFreemium model with premium subscriptions for advanced analytics and personalized mentoring.\r\n\r\nCompetition:\r\nExisting apps like Notion and Google Calendar, but they lack AI-based personalized study planning.\r\n\r\nRevenue Strategy:\r\nMonthly subscription plans and partnerships with educational institutions.\r\n\r\nScalability:\r\nCan expand globally with support for multiple languages and curriculums.\r\n\r\nTeam:\r\nA team of AI engineers and education experts.\r\n",
+                "score": 32.9,
+                "date": "2026-09-21",
+                "readiness": "\ud83c\udf31 Early Stage",
+                "industry": "EdTech"
+            },
+            {
+                "pitch": "A web-based Startup Pitch Analyzer that evaluates pitches using NLP and business analysis. It scores clarity, completeness, and viability, then provides personalized suggestions and investor-style questions to strengthen the pitch",
+                "score": 0.47,
+                "date": "2026-09-21",
+                "readiness": "\ud83c\udf31 Early Stage",
+                "industry": "General / Uncategorized"
+            },
+            {
+                "pitch": "Problem  \r\nStudents preparing for competitive exams often face scattered resources, lack of personalized guidance, and low motivation, leading to poor outcomes.\r\n\r\nSolution  \r\nEduBridge is an AI\u2011powered platform that analyzes a student\u2019s strengths and weaknesses, recommends tailored study plans, and provides interactive quizzes with instant feedback.\r\n\r\nTarget Market\r\n\r\nPrimary: College students in India preparing for entrance exams (IIT\u2011JEE, NEET, UPSC).\r\n\r\nSecondary: Global learners seeking personalized online education.\r\n\r\nBusiness Model\r\n\r\nFreemium model: Free basic quizzes, paid premium features (personalized analytics, mentor sessions).\r\n\r\nSubscription plans for institutions.\r\n\r\nAffiliate partnerships with coaching centers.\r\n\r\nCompetition\r\n\r\nByju\u2019s, Unacademy, Khan Academy.\r\n\r\nDifferentiator: Unlike competitors, EduBridge focuses on personalized AI\u2011driven analytics rather than generic content delivery.\r\n\r\nTeam\r\n\r\nFounders: Computer Science graduates with expertise in AI/ML.\r\n\r\nAdvisors: Experienced educators and exam mentors.\r\n\r\nDevelopers: Full\u2011stack engineers building scalable web apps.",
+                "score": 42.81,
+                "date": "2026-09-21",
+                "readiness": "\u26a0\ufe0f Needs Improvement",
+                "industry": "EdTech"
+            },
+            {
+                "pitch": "Problem  \r\nStudents preparing for competitive exams often face scattered resources, lack of personalized guidance, and low motivation, leading to poor outcomes.\r\n\r\nSolution  \r\nEduBridge is an AI\u2011powered platform that analyzes a student\u2019s strengths and weaknesses, recommends tailored study plans, and provides interactive quizzes with instant feedback.\r\n\r\nTarget Market\r\n\r\nPrimary: College students in India preparing for entrance exams (IIT\u2011JEE, NEET, UPSC).\r\n\r\nSecondary: Global learners seeking personalized online education.\r\n\r\nBusiness Model\r\n\r\nFreemium model: Free basic quizzes, paid premium features (personalized analytics, mentor sessions).\r\n\r\nSubscription plans for institutions.\r\n\r\nAffiliate partnerships with coaching centers.\r\n\r\nCompetition\r\n\r\nByju\u2019s, Unacademy, Khan Academy.\r\n\r\nDifferentiator: Unlike competitors, EduBridge focuses on personalized AI\u2011driven analytics rather than generic content delivery.\r\n\r\nTeam\r\n\r\nFounders: Computer Science graduates with expertise in AI/ML.\r\n\r\nAdvisors: Experienced educators and exam mentors.\r\n\r\nDevelopers: Full\u2011stack engineers building scalable web apps.",
+                "score": 42.81,
+                "date": "2026-09-21",
+                "readiness": "\u26a0\ufe0f Needs Improvement",
+                "industry": "EdTech"
+            },
+            {
+                "pitch": "Problem  \r\nStudents preparing for competitive exams often face scattered resources, lack of personalized guidance, and low motivation, leading to poor outcomes.\r\n\r\nSolution  \r\nEduBridge is an AI\u2011powered platform that analyzes a student\u2019s strengths and weaknesses, recommends tailored study plans, and provides interactive quizzes with instant feedback.\r\n\r\nTarget Market\r\n\r\nPrimary: College students in India preparing for entrance exams (IIT\u2011JEE, NEET, UPSC).\r\n\r\nSecondary: Global learners seeking personalized online education.\r\n\r\nBusiness Model\r\n\r\nFreemium model: Free basic quizzes, paid premium features (personalized analytics, mentor sessions).\r\n\r\nSubscription plans for institutions.\r\n\r\nAffiliate partnerships with coaching centers.\r\n\r\nCompetition\r\n\r\nByju\u2019s, Unacademy, Khan Academy.\r\n\r\nDifferentiator: Unlike competitors, EduBridge focuses on personalized AI\u2011driven analytics rather than generic content delivery.\r\n\r\nTeam\r\n\r\nFounders: Computer Science graduates with expertise in AI/ML.\r\n\r\nAdvisors: Experienced educators and exam mentors.\r\n\r\nDevelopers: Full\u2011stack engineers building scalable web apps.",
+                "score": 42.81,
+                "date": "2026-09-21",
+                "readiness": "\u26a0\ufe0f Needs Improvement",
+                "industry": "EdTech"
+            },
+            {
+                "pitch": "3. \ud83c\udfe5 HealthTech Pitch: MediConnect \u2013 Smart Patient Care Platform\r\nProblem  \r\nHospitals struggle with fragmented patient records, leading to delays in treatment and poor patient experience.\r\n\r\nSolution  \r\nMediConnect is a cloud\u2011based platform that integrates patient history, prescriptions, and lab results into one dashboard. Doctors get real\u2011time access, and patients can track recovery progress.\r\n\r\nTarget Market\r\n\r\nPrimary: Mid\u2011sized hospitals and clinics.\r\n\r\nSecondary: Telemedicine providers.\r\n\r\nBusiness Model\r\n\r\nSaaS subscription for hospitals.\r\n\r\nPay\u2011per\u2011use model for smaller clinics.\r\n\r\nPremium analytics for healthcare administrators.\r\n\r\nCompetition\r\n\r\nPracto, Cerner, Epic Systems.\r\n\r\nDifferentiator: Lightweight, affordable, and designed for emerging markets.\r\n\r\nTeam\r\n\r\nFounders: Healthcare IT specialists.\r\n\r\nAdvisors: Practicing doctors.\r\n\r\nDevelopers: Cloud engineers + data security experts.",
+                "score": 39.31,
+                "date": "2026-09-23",
+                "readiness": "\ud83c\udf31 Early Stage",
+                "industry": "Healthcare"
+            },
+            {
+                "pitch": "Startup Pitch Analyzer\nAutomated Pitch Analysis Report\nOVERALL SCORE\n42.81\nREADINESS\n\u0000\u0000 Needs Improvement\nEXPERIENCE LEVEL\nBeginner\nStrategy (AOA):\n Moderate - You highlight a differentiation, but naming specific competitors would strengthen this\nfurther.\nMarket (MOA):\n Weak - Market isn't clearly described. Define who your customers are and how many of them exist.\nInvestor Readiness (IR):\n Not ready for investors\nScores\nProblem: 5.02\nSolution: 7.03\nMarket: 7.52\nBusiness: 9.13\nCompetition: 3.5\nTeam: 10.61\nStrengths\nWeaknesses\nProblem needs improvement\nSolution needs improvement\nMarket needs improvement\nBusiness_model needs improvement\nCompetition needs improvement\nTeam needs improvement\nBusiness needs improvement\nPresentation Feedback\nPresentation Score:\n 85/100\nAdd concrete numbers or metrics (market size, growth rate, pricing) to make your pitch more credible.\nInvestor Interest Prediction\nSuccess Probability:\n 40.0%\nLow potential - significant improvements needed\nCompetitor Analysis\nLevel:\n Moderate\nYou highlight a differentiation, but naming specific competitors would strengthen this further.\nDifferentiators found:\n unlike\nMarket Opportunity Analysis\nLevel:\n Weak\nMarket isn't clearly described. Define who your customers are and how many of them exist.\nTarget audience defined:\n Yes\nIndustry Classification\nDetected Industry:\n EdTech (confidence: Moderate)\nExplain the learning outcomes or pedagogy behind the product, not just the technology.\nClarify who the buyer is - the institution, the parent, or the learner.\nAI Investor Panel Simulation\nSkeptical VC\n (Needs more information)\nI'm not convinced yet on business model - that's central to financial and competitive risk.\n\"Can you walk me through your business model in more detail?\"\nProduct-Focused Angel\n (Needs more information)\nI'm not convinced yet on solution - that's central to product-market fit.\n\"Can you walk me through your solution in more detail?\"\nGrowth Investor\n (Needs more information)\nI'm not convinced yet on market and team - that's central to scale and execution.\n\"Can you walk me through your market in more detail?\"",
+                "score": 44.02,
+                "date": "2026-09-23",
+                "readiness": "\u26a0\ufe0f Needs Improvement",
+                "industry": "EdTech"
+            },
+            {
+                "pitch": "FinTech Pitch: PaySmart \u2013 AI Expense Optimizer\r\nProblem  \r\nYoung professionals overspend due to poor budgeting and lack of real\u2011time financial insights. Traditional banking apps only show transactions, not actionable advice.\r\n\r\nSolution  \r\nPaySmart is an AI\u2011driven app that connects to bank accounts, categorizes spending, and gives instant alerts when users exceed budgets. It also suggests savings opportunities and investment options.\r\n\r\nTarget Market\r\n\r\nPrimary: Urban millennials and Gen Z professionals.\r\n\r\nSecondary: SMEs looking for expense tracking tools.\r\n\r\nBusiness Model\r\n\r\nFreemium app with premium subscription for advanced analytics.\r\n\r\nPartnerships with banks and fintech companies for B2B licensing.\r\n\r\nCompetition\r\n\r\nMint, YNAB, traditional banking apps.\r\n\r\nDifferentiator: Real\u2011time AI alerts + personalized savings recommendations.\r\n\r\nTeam\r\n\r\nFounders: Finance + Computer Science graduates.\r\n\r\nAdvisors: Banking professionals.\r\n\r\nDevelopers: Experienced in secure fintech applications.\r\n",
+                "score": 44.23,
+                "date": "2026-09-25",
+                "readiness": "\u26a0\ufe0f Needs Improvement",
+                "industry": "FinTech"
+            }
+        ]
+    },
+    "anveshchantu@gmaill.com": {
+        "name": "Anvesh",
+        "password": "Anvesh0809@",
+        "experience": 6,
+        "security_answer": "bhargav",
+        "attempts": 0,
+        "lock_time": 0,
+        "ideas": [
+            {
+                "pitch": "HealthTech Pitch: MediConnect \u2013 Smart Patient Care Platform\r\nProblem  \r\nHospitals struggle with fragmented patient records, leading to delays in treatment and poor patient experience.\r\n\r\nSolution  \r\nMediConnect is a cloud\u2011based platform that integrates patient history, prescriptions, and lab results into one dashboard. Doctors get real\u2011time access, and patients can track recovery progress.\r\n\r\nTarget Market\r\n\r\nPrimary: Mid\u2011sized hospitals and clinics.\r\n\r\nSecondary: Telemedicine providers.\r\n\r\nBusiness Model\r\n\r\nSaaS subscription for hospitals.\r\n\r\nPay\u2011per\u2011use model for smaller clinics.\r\n\r\nPremium analytics for healthcare administrators.\r\n\r\nCompetition\r\n\r\nPracto, Cerner, Epic Systems.\r\n\r\nDifferentiator: Lightweight, affordable, and designed for emerging markets.\r\n\r\nTeam\r\n\r\nFounders: Healthcare IT specialists.\r\n\r\nAdvisors: Practicing doctors.\r\n\r\nDevelopers: Cloud engineers + data security experts.",
+                "score": 49.11,
+                "date": "2026-09-25",
+                "readiness": "\u26a0\ufe0f Needs Improvement",
+                "industry": "Healthcare"
+            }
+        ]
+    }
+}

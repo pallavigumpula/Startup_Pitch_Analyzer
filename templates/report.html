@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Startup Pitch Report</title>
+<style>
+    body {
+        font-family: Arial, "Segoe UI", sans-serif;
+        color: #333;
+        margin: 30px 40px;
+    }
+
+    .report-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-bottom: 3px solid #4facfe;
+        padding-bottom: 16px;
+        margin-bottom: 20px;
+    }
+
+    .report-header img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+
+    .report-header h1 {
+        margin: 0;
+        color: #1d2671;
+        font-size: 22px;
+    }
+
+    .report-header p {
+        margin: 2px 0 0;
+        color: #777;
+        font-size: 12px;
+    }
+
+    .summary-row {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .summary-box {
+        flex: 1;
+        background: #f4f6fb;
+        border-left: 4px solid #4facfe;
+        border-radius: 6px;
+        padding: 10px 14px;
+    }
+
+    .summary-box .label {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #888;
+        letter-spacing: .4px;
+    }
+
+    .summary-box .value {
+        font-size: 16px;
+        font-weight: bold;
+        color: #1d2671;
+    }
+
+    h3 {
+        color: #1d2671;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 4px;
+        margin-top: 26px;
+    }
+
+    ul {
+        margin: 6px 0;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 4px;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+    {% if logo_data %}<img src="{{ logo_data }}" alt="logo">{% endif %}
+    <div>
+        <h1>Startup Pitch Analyzer</h1>
+        <p>Automated Pitch Analysis Report</p>
+    </div>
+</div>
+
+<div class="summary-row">
+    <div class="summary-box">
+        <div class="label">Overall Score</div>
+        <div class="value">{{ score }}</div>
+    </div>
+    <div class="summary-box">
+        <div class="label">Readiness</div>
+        <div class="value">{{ readiness }}</div>
+    </div>
+    <div class="summary-box">
+        <div class="label">Experience Level</div>
+        <div class="value">{{ level }}</div>
+    </div>
+</div>
+
+<p><b>Strategy (AOA):</b> {{ aoa.level if aoa else '' }} - {{ aoa.analysis if aoa else '' }}</p>
+<p><b>Market (MOA):</b> {{ moa.level if moa else '' }} - {{ moa.analysis if moa else '' }}</p>
+<p><b>Investor Readiness (IR):</b> {{ ir }}</p>
+
+<h3>Scores</h3>
+<ul>
+<li>Problem: {{ scores.get('problem', 0) }}</li>
+<li>Solution: {{ scores.get('solution', 0) }}</li>
+<li>Market: {{ scores.get('market', 0) }}</li>
+<li>Business: {{ scores.get('business', 0) }}</li>
+<li>Competition: {{ scores.get('competition', 0) }}</li>
+<li>Team: {{ scores.get('team', 0) }}</li>
+</ul>
+
+<h3>Strengths</h3>
+<ul>
+{% for s in strengths %}
+<li>{{ s }}</li>
+{% endfor %}
+</ul>
+
+<h3>Weaknesses</h3>
+<ul>
+{% for w in weaknesses %}
+<li>{{ w }}</li>
+{% endfor %}
+</ul>
+
+{% if presentation %}
+<h3>Presentation Feedback</h3>
+<p><b>Presentation Score:</b> {{ presentation.presentation_score }}/100</p>
+<ul>
+{% for f in presentation.feedback %}
+<li>{{ f }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if prediction %}
+<h3>Investor Interest Prediction</h3>
+<p><b>Success Probability:</b> {{ prediction.probability }}%</p>
+<p>{{ prediction.label }}</p>
+{% endif %}
+
+{% if aoa %}
+<h3>Competitor Analysis</h3>
+<p><b>Level:</b> {{ aoa.level }}</p>
+<p>{{ aoa.analysis }}</p>
+{% if aoa.competitors_named %}<p><b>Named competitors:</b> {{ aoa.competitors_named | join(', ') }}</p>{% endif %}
+{% if aoa.differentiators_found %}<p><b>Differentiators found:</b> {{ aoa.differentiators_found | join(', ') }}</p>{% endif %}
+{% endif %}
+
+{% if moa %}
+<h3>Market Opportunity Analysis</h3>
+<p><b>Level:</b> {{ moa.level }}</p>
+<p>{{ moa.analysis }}</p>
+{% if moa.market_size_mentions %}<p><b>Market size mentions:</b> {{ moa.market_size_mentions | join(', ') }}</p>{% endif %}
+<p><b>Target audience defined:</b> {{ "Yes" if moa.audience_defined else "No" }}</p>
+{% endif %}
+
+{% if industry %}
+<h3>Industry Classification</h3>
+<p><b>Detected Industry:</b> {{ industry.industry }} (confidence: {{ industry.confidence }})</p>
+<ul>
+{% for tip in industry.tips %}
+<li>{{ tip }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if investor_panel %}
+<h3>AI Investor Panel Simulation</h3>
+{% for member in investor_panel %}
+<p><b>{{ member.persona }}</b> ({{ member.verdict }})<br>
+{{ member.reaction }}<br>
+<i>"{{ member.question }}"</i></p>
+{% endfor %}
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Startup Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+
+        <span class="auth-tagline">Pitch Intelligence Platform</span>
+        <h1>Startup Pitch Analyzer</h1>
+        <p>
+            The workspace where your startup ideas
+            turn into investor-ready insights.
+        </p>
+
+        <ul class="auth-features">
+            <li><span class="icon">📊</span> Instant scoring across problem, solution, market, business model, competition &amp; team</li>
+            <li><span class="icon">🤖</span> AI investor panel simulation with real follow-up questions</li>
+            <li><span class="icon">🏷️</span> Industry-specific tips and a downloadable PDF report</li>
+        </ul>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <div class="auth-box">
+            <h2>Welcome back 👋</h2>
+
+            <form method="POST">
+
+                <label class="field-label">Email</label>
+                <input type="email" name="email"
+                       placeholder="Enter email"
+                       required>
+
+                <label class="field-label">Password</label>
+                <div class="password-box">
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Enter password"
+                           pattern="(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                           title="Must contain 1 uppercase, 1 special character, min 8 characters"
+                           required>
+
+                    <span class="toggle" onclick="togglePassword('password', this)">Show</span>
+                </div>
+
+                <small>
+                    Must contain 1 uppercase, 1 special character, min 8 characters
+                </small>
+
+                <button type="submit">Sign in</button>
+
+            </form>
+
+            <div class="links">
+                New here? <a href="/register">Create account</a><br>
+                <a href="/forgot">Forgot Password?</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function togglePassword(id, el) {
+    let field = document.getElementById(id);
+
+    if (field.type === "password") {
+        field.type = "text";
+        el.innerText = "Hide";
+    } else {
+        field.type = "password";
+        el.innerText = "Show";
+    }
+}
+</script>
+
+</body>
+</html>
